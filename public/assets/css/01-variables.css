@@ -1,0 +1,84 @@
+/*
+MIT License
+
+Copyright (c) 2026 SupromTeam
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+:root {
+  --font-display: 'Manrope', 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+  --bg: #f6f1ea;
+  --bg-2: #fdfaf6;
+  --panel: #ffffff;
+  --panel-2: #f3ece2;
+  --panel-3: #e8dfd2;
+  --border: rgba(50, 38, 28, 0.12);
+  --text: #1f1b16;
+  --muted: #6b6156;
+  --accent: #ff7a3d;
+  --accent-2: #2cb6a0;
+  --accent-3: #f2b94b;
+  --accent-soft: rgba(255, 122, 61, 0.18);
+  --success: #22c55e;
+  --danger: #ef4444;
+  --shadow: 0 22px 60px rgba(32, 23, 16, 0.15);
+  --shadow-strong: 0 36px 90px rgba(32, 23, 16, 0.22);
+  --ring: 0 0 0 4px rgba(255, 122, 61, 0.25);
+  --bg-ornament: radial-gradient(circle at 20% 10%, rgba(255, 122, 61, 0.2), transparent 55%),
+    radial-gradient(circle at 85% 0%, rgba(44, 182, 160, 0.18), transparent 45%),
+    radial-gradient(circle at 10% 85%, rgba(242, 185, 75, 0.22), transparent 55%);
+  --bg-grid: linear-gradient(transparent 0 28px, rgba(45, 33, 24, 0.05) 28px 29px),
+    linear-gradient(90deg, transparent 0 28px, rgba(45, 33, 24, 0.05) 28px 29px);
+  --bg-grid-size: 29px;
+  --radius-xl: 30px;
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --topbar-height: 76px;
+  --transition: 180ms ease;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --bg: #0e1015;
+  --bg-2: #141922;
+  --panel: #151a24;
+  --panel-2: #1d2430;
+  --panel-3: #232c3b;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f2f2f5;
+  --muted: #98a3b3;
+  --accent: #ff8a55;
+  --accent-2: #40d1b7;
+  --accent-3: #f6c278;
+  --accent-soft: rgba(255, 138, 85, 0.2);
+  --success: #34d399;
+  --danger: #f87171;
+  --shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
+  --shadow-strong: 0 38px 110px rgba(0, 0, 0, 0.7);
+  --ring: 0 0 0 4px rgba(255, 138, 85, 0.25);
+  --bg-ornament: radial-gradient(circle at 20% 12%, rgba(255, 138, 85, 0.2), transparent 55%),
+    radial-gradient(circle at 80% 0%, rgba(64, 209, 183, 0.2), transparent 45%),
+    radial-gradient(circle at 20% 85%, rgba(246, 194, 120, 0.16), transparent 55%);
+  --bg-grid: linear-gradient(transparent 0 28px, rgba(255, 255, 255, 0.04) 28px 29px),
+    linear-gradient(90deg, transparent 0 28px, rgba(255, 255, 255, 0.04) 28px 29px);
+  color-scheme: dark;
+}

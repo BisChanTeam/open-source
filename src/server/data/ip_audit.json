@@ -1,0 +1,17 @@
+[
+  {
+    "ip": "127.0.0.1",
+    "firstSeenAt": "2026-05-27T04:29:27.696Z",
+    "lastSeenAt": "2026-06-08T03:45:39.428Z",
+    "hits": 1883,
+    "blocked": false,
+    "foreign": false,
+    "countryCode": null,
+    "country": null,
+    "staticLikely": null,
+    "mobile": null,
+    "hosting": null,
+    "proxy": null,
+    "reason": "private_or_local"
+  }
+]

@@ -1,0 +1,325 @@
+<!--
+MIT License
+
+Copyright (c) 2026 SupromTeam
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+
+<!doctype html>
+
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>БисЧан - личные чаты</title>
+
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="https://biscdn.ru/bischan/js/theme.js" defer></script>
+  <script src="/assets/js/app-core.js" defer></script>
+  <script src="/assets/js/app-auth.js" defer></script>
+  <script src="/assets/js/app-events.js" defer></script>
+  <script src="/assets/js/app-polling.js" defer></script>
+  <script src="/assets/js/sw-register.js" defer></script>
+</head>
+<body>
+  <button class="theme-toggle" id="theme-toggle" type="button" aria-live="polite">
+    <span class="theme-icon" aria-hidden="true"></span>
+    <span class="theme-label">Тёмная тема</span>
+  </button>
+
+  <div id="login-view" class="panel">
+    <div class="auth-shell">
+      <section class="auth-hero glass">
+        <div class="hero-logo">
+          <img src="https://files-bisfd.ru/img/logo/bischan.png" alt="БисЧан" class="logo">
+          <h1>БисЧан</h1>
+        </div>
+        <p class="muted">Лёгкие личные чаты без лишнего шума. Быстро, просто, по‑делу.</p>
+      </section>
+
+      
+      <section class="login-card">
+        <div id="login-form">
+          <div class="card-header">
+            <div class="meta">
+            <h2>Вход</h2>
+            <p class="muted" style="margin:0;">Укажите имя пользователя и пароль. Мы не спрашиваем лишнего.</p>
+          </div>
+        </div>
+        <label class="field">
+          <span>Имя пользователя</span>
+          <input id="login-username" type="text" autocomplete="username" placeholder="username">
+        </label>
+          <label class="field">
+            <span>Пароль</span>
+            <input id="login-pass" type="password" autocomplete="current-password" placeholder="********">
+          </label>
+          <div class="actions">
+            <button id="btn-login" type="button">Войти</button>
+          </div>
+          <button id="show-register" class="link" type="button">Нет аккаунта? Зарегистрироваться</button>
+        </div>
+
+        <div id="register-form" class="hidden">
+          <div class="card-header">
+            <div class="meta">
+              <h2>Регистрация</h2>
+              <p class="muted" style="margin:0;">Введите имя, имя пользователя и пароль. Мы не используем ваши данные для рассылок.</p>
+            </div>
+          </div>
+          <label class="field">
+            <span>Имя</span>
+            <input id="register-name" type="text" autocomplete="name" placeholder="Ваше имя">
+          </label>
+          <label class="field">
+            <span>Имя пользователя</span>
+            <input id="register-username" type="text" autocomplete="username" placeholder="username">
+          </label>
+          <label class="field">
+            <span>Пароль</span>
+            <input id="register-pass" type="password" autocomplete="new-password" placeholder="********">
+          </label>
+          <div class="actions">
+            <button id="btn-register" type="button">Создать аккаунт</button>
+          </div>
+          <p class="hint">Имя пользователя: с буквы, 5-32 символа, только латиница/цифры/подчеркивание.</p>
+          <button id="show-login" class="link" type="button">Уже есть аккаунт? Войти</button>
+          <p class="hint" style="margin-top:10px;">
+            <a class="link" href="/privacy" target="_blank" rel="noopener" data-policy-link="true">Политика конфиденциальности</a>
+            ·
+            <a class="link" href="/terms" target="_blank" rel="noopener" data-terms-link="true">Пользовательское соглашение</a>
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <div id="app-view" class="hidden">
+    <header class="topbar">
+      <div class="brand">
+        <img src="https://files-bisfd.ru/img/logo/bischan.png" class="logo tiny" alt="БисЧан">
+        <div>
+          <div class="title">БисЧан</div>
+          <div class="subtitle">Личные разговоры без лишнего шума.</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a href="/admin" class="link hidden" id="admin-link">Админ-панель</a>
+        <button id="btn-settings" class="ghost" type="button">Настройки</button>
+        <button id="btn-logout" class="ghost">Выйти</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div>
+            <div class="sidebar-title">Чаты</div>
+            <div class="sidebar-subtitle muted">Личные и групповые</div>
+          </div>
+        </div>
+        <div class="sidebar-section">
+          <div class="section-title">Groups</div>
+          <div id="group-list"></div>
+        </div>
+        <div class="sidebar-section">
+          <div class="section-title">Channels</div>
+          <div id="channel-list"></div>
+        </div>
+        <div class="sidebar-section">
+          <div class="section-title">Direct</div>
+          <div id="chat-list"></div>
+        </div>
+        <div class="sidebar-section">
+          <div class="section-title">Search</div>
+          <label class="field">
+            <span>Username</span>
+            <input id="user-search-input" type="text" placeholder="username">
+          </label>
+          <div class="actions" style="margin-top:8px;">
+            <button id="user-search-btn" class="ghost" type="button">Найти</button>
+          </div>
+          <div id="user-search-status" class="muted" style="margin-top:8px;"></div>
+          <div id="user-search-result" class="profile-preview" style="margin-top:10px;"></div>
+        </div>
+      </aside>
+      <section class="chat">
+        <div class="chat-header">
+          <button id="mobile-back" class="ghost hidden" type="button">
+  ← Чаты
+</button>
+          <div class="chat-meta">
+            <div class="chat-title" id="chat-title">Выберите собеседника</div>
+            <div class="muted" id="chat-status">Переписка появится здесь</div>
+          </div>
+          <button id="attach-file-btn" class="ghost" type="button">File</button>
+          <input id="attach-file-input" type="file" class="hidden">
+          <div id="typing-indicator" class="typing muted hidden">Печатает...</div>
+        </div>
+        <div id="messages" class="messages"></div>
+        <form id="message-form" class="message-box">
+          <input id="message-input" type="text" placeholder="Напишите сообщение и нажмите Enter" autocomplete="off">
+          <button type="submit">Отправить</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <div id="settings-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h2 id="settings-title" style="margin:0;">Настройки аккаунта</h2>
+          <p class="muted" style="margin:6px 0 0 0;">Обновите профиль, пароль или удалите аккаунт.</p>
+        </div>
+        <button id="settings-close" class="ghost" type="button">Закрыть</button>
+      </div>
+
+      <div class="settings-grid">
+        <form id="profile-form" class="settings-card">
+          <h3 style="margin:0 0 10px 0;">Профиль</h3>
+          <label class="field">
+            <span>Имя</span>
+            <input id="settings-name" type="text" autocomplete="name" placeholder="Алексей">
+          </label>
+          <label class="field">
+            <span>Имя пользователя</span>
+            <input id="settings-username" type="text" autocomplete="username" placeholder="User">
+          </label>
+          <label class="field">
+            <span>Аватар</span>
+            <input id="settings-avatar" type="file" accept="image/*">
+          </label>
+          <div class="actions">
+            <button type="submit">Сохранить профиль</button>
+          </div>
+        </form>
+
+        <div class="settings-card profile-preview">
+          <h3 style="margin:0 0 10px 0;">Предпросмотр профиля</h3>
+          <div class="preview-card">
+            <img id="preview-avatar" class="preview-avatar" src="https://files-bisfd.ru/img/bischan-staff-avatars/default.jpg" alt="Аватар">
+            <div class="preview-meta">
+              <div id="preview-name" class="preview-name">Ваше имя</div>
+              <div id="preview-username" class="preview-username muted">@username</div>
+            </div>
+          </div>
+          <p class="muted" style="margin:8px 0 0 0;">Так профиль увидят другие пользователи.</p>
+        </div>
+
+        <form id="password-form" class="settings-card">
+          <h3 style="margin:0 0 10px 0;">Пароль</h3>
+          <label class="field">
+            <span>Текущий пароль</span>
+            <input id="current-password" type="password" autocomplete="current-password" placeholder="********">
+          </label>
+          <label class="field">
+            <span>Новый пароль</span>
+            <input id="new-password" type="password" autocomplete="new-password" placeholder="********">
+          </label>
+          <div class="actions">
+            <button type="submit">Сменить пароль</button>
+          </div>
+        </form>
+
+        <form id="delete-form" class="settings-card danger">
+          <h3 style="margin:0 0 10px 0;">Удаление аккаунта</h3>
+          <p class="muted" style="margin:0 0 12px 0;">Удаляются профиль, сообщения и доступ к чатам.</p>
+          <label class="field">
+            <span>Пароль для подтверждения</span>
+            <input id="delete-password" type="password" autocomplete="current-password" placeholder="********">
+          </label>
+          <div class="actions">
+            <button type="submit">Удалить аккаунт</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/js/user-search.js" defer></script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const sidebar = document.querySelector(".sidebar");
+  const chat = document.querySelector(".chat");
+  const backBtn = document.getElementById("mobile-back");
+
+  function mobileMode() {
+    return window.innerWidth <= 768;
+  }
+
+  function openChatMobile() {
+    if (!mobileMode()) return;
+
+    sidebar.style.display = "none";
+    chat.style.display = "flex";
+
+    backBtn.classList.remove("hidden");
+  }
+
+  function closeChatMobile() {
+    if (!mobileMode()) return;
+
+    sidebar.style.display = "block";
+    chat.style.display = "none";
+
+    backBtn.classList.add("hidden");
+  }
+
+  backBtn?.addEventListener("click", closeChatMobile);
+
+  document.body.addEventListener("click", (e) => {
+
+    const item =
+      e.target.closest("#chat-list > *") ||
+      e.target.closest("#group-list > *") ||
+      e.target.closest("#channel-list > *");
+
+    if (item) {
+      setTimeout(openChatMobile, 100);
+    }
+  });
+
+  if (mobileMode()) {
+    chat.style.display = "none";
+  }
+
+  window.addEventListener("resize", () => {
+
+    if (window.innerWidth > 768) {
+      sidebar.style.display = "";
+      chat.style.display = "";
+      backBtn.classList.add("hidden");
+    } else {
+      if (
+        document.getElementById("chat-title")?.textContent !==
+        "Выберите собеседника"
+      ) {
+        sidebar.style.display = "none";
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>
+

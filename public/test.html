@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Табло аэропорта Якутск — Вылеты/Прилёты</title>
+<style>
+  :root {
+    --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --accent:#38bdf8; --ok:#10b981; --warn:#f59e0b; --bad:#ef4444;
+  }
+  html,body{height:100%}
+  body{margin:0;background:linear-gradient(180deg,#0b1220,#0f172a 30%,#0b1220);color:var(--text);font-family:system-ui,Segoe UI,Roboto,Inter,Arial,sans-serif}
+  .wrap{max-width:1100px;margin:24px auto;padding:0 16px}
+  header{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .title{font-weight:800;letter-spacing:.3px;font-size:clamp(20px,4vw,28px)}
+  .pill{background:rgba(56,189,248,.15);color:var(--accent);padding:6px 10px;border-radius:999px;font-size:12px}
+  .tabs{display:flex;gap:8px;margin:12px 0 16px}
+  .tab{cursor:pointer;background:#0b1220;border:1px solid #1f2937;color:var(--muted);padding:10px 14px;border-radius:12px;font-weight:600}
+  .tab.active{color:#fff;border-color:var(--accent);box-shadow:0 0 0 2px rgba(56,189,248,.15) inset}
+  .card{background:var(--card);border:1px solid #1f2937;border-radius:16px;overflow:hidden}
+  .toolbar{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:12px;border-bottom:1px solid #1f2937}
+  .muted{color:var(--muted);font-size:12px}
+  .btn{cursor:pointer;background:#0b1220;border:1px solid #1f2937;color:#fff;padding:8px 12px;border-radius:10px}
+  .btn:hover{border-color:var(--accent)}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:12px 10px;border-bottom:1px solid #1f2937;text-align:left;font-size:14px}
+  th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  tr:hover{background:#0c1426}
+  .status{font-weight:700}
+  .status.ok{color:var(--ok)}
+  .status.warn{color:var(--warn)}
+  .status.bad{color:var(--bad)}
+  .empty{padding:24px;text-align:center;color:var(--muted)}
+  footer{margin-top:16px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+  code{background:#0b1220;border:1px solid #1f2937;padding:2px 6px;border-radius:6px}
+  .logo{width:24px;height:24px;object-fit:contain;vertical-align:middle;margin-right:8px;border-radius:4px;background:#0b1220;border:1px solid #1f2937}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="title">Аэропорт Якутск — Онлайн-табло</div>
+    <div class="pill">Автообновление</div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-kind="departures">Вылеты</button>
+    <button class="tab" data-kind="arrivals">Прилёты</button>
+  </div>
+
+  <div class="card">
+    <div class="toolbar">
+      <div class="muted">Источник: <strong>yks.aero</strong> (через защищённый прокси)</div>
+      <div>
+        <button id="refresh" class="btn">Обновить</button>
+      </div>
+    </div>
+    <div id="table-wrap">
+      <table id="board">
+        <thead>
+          <tr>
+            <th>Время</th>
+            <th>Рейс</th>
+            <th>Маршрут</th>
+            <th>Авиакомпания</th>
+            <th>Статус</th>
+          </tr>
+        </thead>
+        <tbody id="rows">
+          <tr><td class="empty" colspan="5">Загрузка…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    <div>Обновится через <span id="ttl">—</span> сек.</div>
+    <div>Если возникли проблемы, напишите - <a href="https://t.me/GeorgijSoldatov">@GeorgijSoldatov</a></div>
+  </footer>
+</div>
+
+<script>
+  // ВАШ адрес воркера/прокси:
+  const PROXY_BASE = "http://31.77.78.161:8787"; // ← замените
+  // Период автообновления:
+  const REFRESH_EVERY_SEC = 60;
+
+  const tabs = document.querySelectorAll(".tab");
+  const rowsEl = document.getElementById("rows");
+  const ttlEl = document.getElementById("ttl");
+  const refreshBtn = document.getElementById("refresh");
+
+  let currentKind = "departures";
+  let timer = null, ttl = REFRESH_EVERY_SEC;
+
+  tabs.forEach(t => t.addEventListener("click", () => {
+    tabs.forEach(x => x.classList.remove("active"));
+    t.classList.add("active");
+    currentKind = t.dataset.kind;
+    loadBoard();
+  }));
+
+  refreshBtn.addEventListener("click", loadBoard);
+
+  function tick() {
+    ttl--;
+    ttlEl.textContent = ttl;
+    if (ttl <= 0) {
+      loadBoard();
+    }
+  }
+  function startTimer() {
+    clearInterval(timer);
+    ttl = REFRESH_EVERY_SEC;
+    ttlEl.textContent = ttl;
+    timer = setInterval(tick, 1000);
+  }
+
+  async function loadBoard() {
+    startTimer();
+    rowsEl.innerHTML = `<tr><td class="empty" colspan="5">Загрузка ${currentKind==='departures'?'вылетов':'прилётов'}…</td></tr>`;
+    try {
+      const r = await fetch(`${PROXY_BASE}/api/${currentKind}`);
+      const data = await r.json();
+      if (!data.ok) throw new Error(data.error || "proxy error");
+      const flights = extractFlights(data.html) || [];
+      if (!flights.length) {
+        rowsEl.innerHTML = `<tr><td class="empty" colspan="5">Нет данных или изменился сайт. Попробуйте «Обновить».</td></tr>`;
+        return;
+      }
+      rowsEl.innerHTML = flights.map(f => `
+        <tr>
+          <td>${esc(f.time)}</td>
+          <td>${esc(f.flight)}</td>
+          <td>${esc(f.route)}</td>
+          <td>${esc(f.airline)}</td>
+          <td class="status ${statusClass(f.status)}">${esc(f.status)}</td>
+        </tr>
+      `).join("");
+    } catch (e) {
+      rowsEl.innerHTML = `<tr><td class="empty" colspan="5">Ошибка загрузки: ${esc(String(e))}</td></tr>`;
+    }
+  }
+
+function extractFlights(html) {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const flights = [];
+
+    // Селектор для всех строк рейсов в таблице.
+    // Они находятся внутри <ul> с классом scheduler-table__list, каждая строка - <li>.
+    const flightItems = doc.querySelectorAll('.scheduler-table__list > .scheduler-table__item');
+
+    flightItems.forEach(item => {
+        // Получаем краткое описание рейса (Summary)
+        const brief = item.querySelector('.scheduler-entry__brief');
+        if (!brief) return; // Пропустить, если нет основной информации
+
+        // Используем CSS-селекторы для извлечения данных из определенных ячеек
+        const timePlanEl = brief.querySelector('.scheduler-table-row__time--plan');
+        const flightEl = brief.querySelector('.scheduler-table-row__flight');
+        const companyEl = brief.querySelector('.scheduler-table-row__company');
+        const destinationEl = brief.querySelector('.scheduler-table-row__destination');
+        const timeActualEl = brief.querySelector('.scheduler-table-row__time--actual');
+        const statusEl = brief.querySelector('.scheduler-table-row__status .caption');
+
+        // Парсинг времени и даты
+        const time = timePlanEl ? timePlanEl.querySelector('.time .caption').textContent.trim() : '';
+        const date = timePlanEl ? timePlanEl.querySelector('.date .caption').textContent.trim() : '';
+
+        // Парсинг других полей
+        const flight = flightEl ? flightEl.textContent.trim() : '';
+        const route = destinationEl ? destinationEl.textContent.trim() : '';
+        
+        // Название авиакомпании из атрибута 'data-title'
+        const airline = companyEl ? companyEl.getAttribute('data-title') || '' : '';
+        
+        const status = statusEl ? statusEl.textContent.trim() : '';
+        
+        // Фактическое время - может быть пустым
+        const actualTime = timeActualEl ? timeActualEl.textContent.trim() : '';
+        
+        let fullTime;
+        if (actualTime) {
+            fullTime = `${time} ${date} • факт ${actualTime}`;
+        } else {
+            fullTime = `${time} ${date}`;
+        }
+
+        if (flight && route) {
+            flights.push({
+                time: fullTime,
+                flight: flight.replace(' ', ''), // Убираем пробел в номере рейса (R3 295 -> R3295)
+                route: route,
+                airline: airline,
+                status: status
+            });
+        }
+    });
+
+    return flights;
+}
+
+// чуть улучшим цвета статусов
+function statusClass(s){
+  const t=(s||"").toLowerCase();
+  if (/(прибыл|вылетел|landed|departed|on time)/.test(t)) return "ok";
+  if (/(посадка|boarding|задерж)/.test(t)) return "warn";
+  if (/(отмен)/.test(t)) return "bad";
+  return "";
+}
+
+  function statusClass(s){
+    const t = (s||"").toLowerCase();
+    if (/(прибыл|вылетел|landed|departed|по расписанию|on time)/.test(t)) return "ok";
+    if (/(задерж|delay)/.test(t)) return "warn";
+    if (/(отмен|cancel)/.test(t)) return "bad";
+    return "";
+  }
+  function esc(s){return (s||"").replace(/[&<>"']/g,c=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]))}
+
+  // Первый запуск
+  loadBoard();
+</script>
+</body>
+</html>
+
+

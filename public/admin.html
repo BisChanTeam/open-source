@@ -1,0 +1,56 @@
+<!--
+MIT License
+
+Copyright (c) 2026 SupromTeam
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>БисЧан — Панель управления</title>
+
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="https://biscdn.ru/bischan/js/theme.js" defer></script>
+  <script src="https://biscdn.ru/bischan/js/admin.js"></script>
+</head>
+<body>
+  <button class="theme-toggle" id="theme-toggle" type="button" aria-live="polite">
+    <span class="theme-icon" aria-hidden="true"></span>
+    <span class="theme-label">Тёмная тема</span>
+  </button>
+
+  <div class="panel" style="padding-top:40px">
+    <div class="login-card admin-shell">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+        <div>
+          <h2 style="margin:0;">Панель управления БисЧан</h2>
+          <p class="muted" style="margin:4px 0 0 0;">Просмотр пользователей и управление ими через административную панель.</p>
+        </div>
+        <a href="/" class="link">Вернуться на сайт</a>
+      </div>
+      <div id="admin-status" class="muted">Загрузка пользователей...</div>
+      <div id="users"></div>
+    </div>
+  </div>
+</body>
+</html>

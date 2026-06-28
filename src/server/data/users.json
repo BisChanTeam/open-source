@@ -1,0 +1,22 @@
+[
+  {
+    "id": "a7640751-de54-415b-84b4-27eaff25c21f",
+    "nickname": "Поддержка",
+    "username": "helpOrig",
+    "passwordHash": "$2b$10$luBdYdEyGEDAaAarjT4rs.gaaR1/gazk/FT56X6HjHeqWdI/xo7C.",
+    "avatar": "https://files-bisfd.ru/img/bischan-staff-avatars/help.jpg",
+    "blocked": false,
+    "mutedUntil": null,
+    "isAdmin": false,
+    "online": true,
+    "lastSeen": null,
+    "contacts": [],
+    "privacy": {
+      "showOnline": true,
+      "showLastSeen": true,
+      "allowDms": true
+    },
+    "secretChats": [],
+    "readByChat": {}
+  }
+]
