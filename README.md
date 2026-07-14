@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🚀 БисЧан (BisChan)
+# БисЧан (BisChan)
 
-Простая и легковесная имиджборда с открытым исходным кодом.
+Простой на взгляд мессенджер который как и все используют WebSocket.
 
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)
