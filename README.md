@@ -35,7 +35,7 @@
 ### 1. Клонируйте репозиторий
 
 ```bash
-git clone <ссылка-на-репозиторий>
+git clone https://github.com/BisChanTeam/open-source
 ```
 
 или скачайте ZIP-архив.
