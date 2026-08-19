@@ -1,0 +1,104 @@
+/*
+MIT License
+
+Copyright (c) 2026 SupromTeam
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+@import url('/assets/css/01-variables.css');
+@import url('/assets/css/02-base.css');
+@import url('/assets/css/03-auth.css');
+@import url('/assets/css/04-components.css');
+@import url('/assets/css/05-chat-layout.css');
+@import url('/assets/css/06-pages.css');
+@import url('/assets/css/07-admin-modal.css');
+@import url('/assets/css/08-motion-responsive.css');
+
+@media (max-width:768px){
+
+  .workspace{
+    display:block;
+    height:calc(100vh - 60px);
+  }
+
+  .sidebar{
+    width:100%;
+    height:100%;
+    border-right:none;
+    overflow-y:auto;
+  }
+
+  .chat{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .chat-header{
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  #mobile-back{
+    display:block;
+  }
+
+  .messages{
+    flex:1;
+    overflow-y:auto;
+  }
+
+  .message-box{
+    position:sticky;
+    bottom:0;
+    background:var(--surface,#1e1e1e);
+    padding:10px;
+  }
+
+  .message-box input{
+    font-size:16px;
+  }
+
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .top-actions{
+    width:100%;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+
+  .sidebar-section{
+    margin-bottom:16px;
+  }
+
+  button{
+    min-height:44px;
+  }
+
+  input{
+    min-height:44px;
+  }
+}

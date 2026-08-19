@@ -1,0 +1,239 @@
+/*
+MIT License
+
+Copyright (c) 2026 SupromTeam
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+.login-card h2 {
+  color: #1c1620;
+  font-size: clamp(2.2rem, 3.2vw, 3.2rem);
+  font-weight: 600;
+}
+
+#login-view .field {
+  color: rgba(20, 12, 28, 0.7);
+}
+
+#login-view .field input {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #1c1620;
+  font-size: 16px;
+  border-radius: 18px;
+  padding: 14px 16px;
+}
+
+#login-view .field input::placeholder {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+#login-view .actions button {
+  background: linear-gradient(135deg, #ffb86c, #ff7a3d);
+  color: #23160f;
+  box-shadow: 0 18px 40px rgba(255, 122, 61, 0.35);
+  padding: 12px 24px;
+  border-radius: 999px;
+}
+
+#login-view .link {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #1c1620;
+  box-shadow: 0 14px 32px rgba(27, 20, 34, 0.2);
+}
+
+#login-view .link:hover {
+  border-color: rgba(0, 0, 0, 0.22);
+  color: #0f0b12;
+}
+
+[data-theme='dark'] #login-view::after {
+  opacity: 0.9;
+}
+
+[data-theme='dark'] #login-view .auth-hero {
+  background: rgba(10, 12, 18, 0.72);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #f1f1f1;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme='dark'] #login-view .auth-hero .muted {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+[data-theme='dark'] #login-view .login-card {
+  background: rgba(14, 18, 28, 0.85);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.65);
+}
+
+[data-theme='dark'] #login-view .login-card h2 {
+  color: #f4f4f4;
+}
+
+[data-theme='dark'] #login-view .field {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme='dark'] #login-view .field input {
+  background: rgba(180, 180, 180, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #0f1116;
+}
+
+[data-theme='dark'] #login-view .link {
+  background: rgba(20, 24, 36, 0.85);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f0f0f0;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme='dark'] #login-view .link:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.login-card h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.logo {
+  width: 92px;
+  height: 92px;
+  border-radius: 20px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+}
+
+.logo.tiny {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: var(--ring);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.link:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+}
+
+.nbfd_header {
+  position: fixed;
+  top: 18px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.nbfd_header:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+}
+
+.theme-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: conic-gradient(from 180deg, var(--accent), transparent 70%);
+  border: 1px solid var(--border);
+}
+
+.top-actions .theme-toggle {
+  position: static;
+  box-shadow: none;
+  background: var(--panel-2);
+  padding: 8px 12px;
+}

@@ -1,0 +1,164 @@
+[
+  {
+    "id": "b0b0e8de-e34e-4c9b-a236-1b5138efcd5c",
+    "nickname": "Изолятор",
+    "username": "izolator",
+    "passwordHash": "$2b$10$uCXQvsAHDQUZkRPhN0nejeksP1Mg/pC35orQHOraW8UeQk8EZhBEO",
+    "avatar": "https://userphoto.ru/avatars/fe829c40-ca73-4557-b64a-bd4cfa05194a.jpg",
+    "blocked": false,
+    "mutedUntil": null,
+    "isAdmin": true,
+    "online": false,
+    "lastSeen": "2026-08-18T13:57:18.029Z",
+    "contacts": [
+      "49094c3a-9954-43ca-8aad-0b8a04fa3882",
+      "e7caddab-bfb9-4fe5-a9f9-c4e3103fc788",
+      "3644ec03-57f4-492e-a3fa-a361b7a87c7b",
+      "88b48137-98ae-4825-adfb-32f9c8e0fd0e",
+      "d66a933c-5b5d-4496-9530-80fbce89801e"
+    ],
+    "privacy": {
+      "showOnline": true,
+      "showLastSeen": true,
+      "allowDms": true
+    },
+    "secretChats": [],
+    "readByChat": {
+      "3644ec03-57f4-492e-a3fa-a361b7a87c7b:b0b0e8de-e34e-4c9b-a236-1b5138efcd5c": 1787015455613,
+      "b0b0e8de-e34e-4c9b-a236-1b5138efcd5c:d66a933c-5b5d-4496-9530-80fbce89801e": 1787018170265
+    }
+  },
+  {
+    "id": "49094c3a-9954-43ca-8aad-0b8a04fa3882",
+    "nickname": "юку",
+    "username": "yukky",
+    "passwordHash": "$2b$10$aKbbiaXwu1fiDrwoIwAen.mq8n/ornMwE3tP.akeF2qEzKPJzuot2",
+    "avatar": "",
+    "blocked": false,
+    "mutedUntil": null,
+    "isAdmin": false,
+    "online": false,
+    "lastSeen": "2026-08-17T12:33:03.431Z",
+    "contacts": [],
+    "privacy": {
+      "showOnline": true,
+      "showLastSeen": true,
+      "allowDms": true
+    },
+    "secretChats": [],
+    "readByChat": {
+      "49094c3a-9954-43ca-8aad-0b8a04fa3882:e7caddab-bfb9-4fe5-a9f9-c4e3103fc788": 1786969977387
+    }
+  },
+  {
+    "id": "e7caddab-bfb9-4fe5-a9f9-c4e3103fc788",
+    "nickname": "ннн",
+    "username": "nnnnn",
+    "passwordHash": "$2b$10$iguEVhhIBQ0KVH0d7NH0JutSlbdQHuPFjxUchgPLtmhjPY82rLTg6",
+    "avatar": "",
+    "blocked": false,
+    "mutedUntil": null,
+    "isAdmin": false,
+    "online": false,
+    "lastSeen": "2026-08-17T12:33:02.437Z",
+    "contacts": [
+      "49094c3a-9954-43ca-8aad-0b8a04fa3882"
+    ],
+    "privacy": {
+      "showOnline": true,
+      "showLastSeen": true,
+      "allowDms": true
+    },
+    "secretChats": [],
+    "readByChat": {
+      "49094c3a-9954-43ca-8aad-0b8a04fa3882:e7caddab-bfb9-4fe5-a9f9-c4e3103fc788": 1786969977387
+    }
+  },
+  {
+    "id": "3644ec03-57f4-492e-a3fa-a361b7a87c7b",
+    "nickname": "LCYT",
+    "username": "lemoncolayt",
+    "passwordHash": "$2b$10$pjgb4nraDqJisrm0B8WVi..wTFGmNnDDEGxnF0FNqSZqiIyOrwN3G",
+    "avatar": "https://userphoto.ru/avatars/904490f3-b274-46a0-9676-bd02adb8114a.jpg",
+    "blocked": false,
+    "mutedUntil": null,
+    "isAdmin": false,
+    "online": false,
+    "lastSeen": "2026-08-17T19:41:11.478Z",
+    "contacts": [],
+    "privacy": {
+      "showOnline": true,
+      "showLastSeen": true,
+      "allowDms": true
+    },
+    "secretChats": [],
+    "readByChat": {
+      "3644ec03-57f4-492e-a3fa-a361b7a87c7b:b0b0e8de-e34e-4c9b-a236-1b5138efcd5c": 1786985307015,
+      "3644ec03-57f4-492e-a3fa-a361b7a87c7b:6158744c-b617-4b72-a62b-2a1b94efb9e4": 1786980133148
+    }
+  },
+  {
+    "id": "6158744c-b617-4b72-a62b-2a1b94efb9e4",
+    "nickname": "Blyater",
+    "username": "siniilox2026",
+    "passwordHash": "$2b$10$Rrpns7DHhkN1Q9hEygixo.T5HXpnu7LYgj3wrcJXb4nbhPHjMFEra",
+    "avatar": "",
+    "blocked": false,
+    "mutedUntil": null,
+    "isAdmin": false,
+    "online": false,
+    "lastSeen": "2026-08-17T14:33:30.140Z",
+    "contacts": [
+      "3644ec03-57f4-492e-a3fa-a361b7a87c7b"
+    ],
+    "privacy": {
+      "showOnline": true,
+      "showLastSeen": true,
+      "allowDms": true
+    },
+    "secretChats": [],
+    "readByChat": {
+      "3644ec03-57f4-492e-a3fa-a361b7a87c7b:6158744c-b617-4b72-a62b-2a1b94efb9e4": 1786977115599
+    }
+  },
+  {
+    "id": "88b48137-98ae-4825-adfb-32f9c8e0fd0e",
+    "nickname": "MR Owner",
+    "username": "mirlynium",
+    "passwordHash": "$2b$10$N/evPfSPk20ifk5WHVlSzuHZoyOyBK6kfL4El3E6dvM5QhC.Bra.6",
+    "avatar": "https://userphoto.ru/avatars/1315570a-8eda-41ae-86e2-ef2698940e0f.png",
+    "blocked": false,
+    "mutedUntil": null,
+    "isAdmin": false,
+    "online": false,
+    "lastSeen": "2026-08-18T09:31:40.451Z",
+    "contacts": [],
+    "privacy": {
+      "showOnline": true,
+      "showLastSeen": true,
+      "allowDms": true
+    },
+    "secretChats": [],
+    "readByChat": {}
+  },
+  {
+    "id": "d66a933c-5b5d-4496-9530-80fbce89801e",
+    "nickname": "БисЧан",
+    "username": "BisChan",
+    "passwordHash": "$2b$10$JjR6O966RHYADzaPbxg5N.G8crRaXGqDsL/EAq0m4sSNdWD9h2yOO",
+    "avatar": "",
+    "blocked": false,
+    "mutedUntil": null,
+    "isAdmin": false,
+    "online": false,
+    "lastSeen": "2026-08-18T00:24:01.533Z",
+    "contacts": [],
+    "privacy": {
+      "showOnline": true,
+      "showLastSeen": true,
+      "allowDms": true
+    },
+    "secretChats": [],
+    "readByChat": {}
+  }
+]

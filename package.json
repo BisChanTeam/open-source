@@ -1,0 +1,26 @@
+{
+  "name": "БисЧан",
+  "version": "1.0.0",
+  "description": "БисЧан - minimal real-time messenger prototype on Node.js, Express and WebSocket.",
+  "main": "src/server/index.js",
+  "license": "MIT",
+  "author": "SupromTeam",
+  "scripts": {
+    "start": "node src/server/index.js"
+  },
+  "keywords": [
+    "chat",
+    "messenger",
+    "websocket",
+    "express"
+  ],
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "raw-body": "^3.0.2",
+    "uuid": "^8.3.2",
+    "ws": "^8.18.3"
+  }
+}
